@@ -15,7 +15,7 @@ class BookstoreSpider(scrapy.Spider):
         super().__init__(*args, **kwargs)
         self.selector = RandomSelector()
 
-"""Discover all categories, then randomly pick 5-10."""
+    """Discover all categories, then randomly pick 5-10."""
     def parse(self, response):
         categories = CategoryExtractor.extract(response)
         self.logger.info("Discovered %d categories", len(categories))
@@ -25,7 +25,7 @@ class BookstoreSpider(scrapy.Spider):
             yield response.follow(url, self.parse_category,
                                   cb_kwargs={"category": name, "book_urls": []})
 
-"""Collect ALL book URLs across pagination, then sample 5."""
+    """Collect ALL book URLs across pagination, then sample 5."""
     def parse_category(self, response, category, book_urls):
 
         book_urls = book_urls + [
@@ -43,7 +43,7 @@ class BookstoreSpider(scrapy.Spider):
             yield scrapy.Request(url, self.parse_book, cb_kwargs={"category": category},
                                  errback=self.on_error)
 
-""" Extract fields from the detail page."""
+    """ Extract fields from the detail page."""
     def parse_book(self, response, category):
 
         data = BookExtractor.extract(response)
