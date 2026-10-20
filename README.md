@@ -48,7 +48,7 @@ Extracted fields:
 ### Steps
 
 ```bash
-git clone https://github.com/NadiaAmir-90/books-data-engineering
+git clone https://github.com/NadiaAmir-90/books-scraping-pipeline
 cd books-scraping-pipeline
 ```
 
